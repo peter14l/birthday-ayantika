@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" id="themeColor" content="#f2ede3">
+  <script>
+    /* Choose the edition before the first paint, so there is no flash. */
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var night = stored ? stored === 'night' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (night) {
+          document.documentElement.dataset.theme = 'dark';
+          document.getElementById('themeColor').setAttribute('content', '#16130f');
+        }
+      } catch (error) {}
+    })();
+  </script>
+  <title>For Ayantika</title>
+  <meta name="description" content="A letter, twenty photographs, eight films and a few small things — kept in one place, for no particular occasion.">
+  <meta property="og:title" content="For Ayantika">
+  <meta property="og:description" content="A letter, twenty photographs, eight films and a few small things.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f2ede3'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' text-anchor='middle' fill='%23191713'%3EA%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#letter">Skip to the letter</a>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <div class="running-head" id="runningHead" aria-hidden="true">
+    <span class="running-head__title" id="runningChapter"></span>
+    <span class="running-head__page" id="runningCount"></span>
+  </div>
+
+  <div class="controls">
+    <button class="control" id="themeToggle" type="button" aria-pressed="false">
+      <span class="control__glyph" aria-hidden="true"></span>
+      <span class="control__text">Night <span class="control__state" id="themeState">off</span></span>
+    </button>
+
+    <button class="control sound" id="soundToggle" type="button" aria-pressed="false">
+      <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="control__text">Sound <span class="control__state" id="soundState">off</span></span>
+    </button>
+  </div>
+
+  <audio id="ambient" src="assets/music.mp3" loop preload="none"></audio>
+
+  <!-- ===================== MASTHEAD ===================== -->
+  <header class="masthead" id="top">
+    <div class="masthead__inner">
+      <p class="kicker">A letter, kept</p>
+
+      <h1 class="masthead__name"><span class="masthead__name-inner">Ayantika</span></h1>
+
+      <div class="masthead__rule" aria-hidden="true"></div>
+
+      <p class="masthead__line">For the ordinary days — and for you in them.</p>
+
+      <p class="masthead__meta">
+        <span>Twenty photographs</span>
+        <span>Eight films</span>
+        <span>No occasion</span>
+      </p>
+
+      <a class="masthead__begin" href="#contents">
+        <span>Begin</span>
+        <span class="masthead__begin-arrow" aria-hidden="true"></span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ===================== CONTENTS ===================== -->
+  <section class="contents" id="contents" data-label="Contents">
+    <p class="section-label"><span class="section-label__text">Contents</span></p>
+
+    <nav aria-label="Contents">
+      <ol class="contents__list">
+        <li class="contents__item">
+          <a href="#letter">
+            <span class="contents__num">I</span>
+            <span class="contents__name">Before anything else</span>
+            <span class="contents__meta">A letter</span>
+          </a>
+        </li>
+        <li class="contents__item">
+          <a href="#photographs">
+            <span class="contents__num">II</span>
+            <span class="contents__name">Twenty photographs</span>
+            <span class="contents__meta">Plates</span>
+          </a>
+        </li>
+        <li class="contents__item">
+          <a href="#films">
+            <span class="contents__num">III</span>
+            <span class="contents__name">Eight films</span>
+            <span class="contents__meta">Moving pictures</span>
+          </a>
+        </li>
+        <li class="contents__item">
+          <a href="#small-things">
+            <span class="contents__num">IV</span>
+            <span class="contents__name">The small things</span>
+            <span class="contents__meta">Four reasons</span>
+          </a>
+        </li>
+        <li class="contents__item">
+          <a href="#chronology">
+            <span class="contents__num">V</span>
+            <span class="contents__name">A short chronology</span>
+            <span class="contents__meta">Five memories</span>
+          </a>
+        </li>
+        <li class="contents__item">
+          <a href="#closing">
+            <span class="contents__num">VI</span>
+            <span class="contents__name">Anyway,</span>
+            <span class="contents__meta">In closing</span>
+          </a>
+        </li>
+      </ol>
+    </nav>
+  </section>
+
+  <main>
+
+    <!-- ===================== I. LETTER ===================== -->
+    <section class="chapter chapter--letter" id="letter" data-label="Before anything else">
+      <header class="chapter__head reveal">
+        <p class="chapter__num" aria-hidden="true">I</p>
+        <h2 class="chapter__title">Before anything else</h2>
+      </header>
+
+      <div class="letter">
+        <p class="letter__salutation reveal">Ayantika,</p>
+
+        <div class="letter__body">
+          <p class="reveal">
+            I keep meaning to say this properly, so I am putting it somewhere I
+            cannot take back.
+          </p>
+          <p class="reveal">
+            You have a way of making ordinary things worth noticing. A walk with
+            no destination. A conversation that starts nowhere and ends at two
+            in the morning. The particular quiet of sitting beside someone and
+            not needing to fill it.
+          </p>
+          <p class="reveal">
+            This is not for a birthday, or a date on a calendar. There is no
+            occasion. It is just a place for the things I would otherwise only
+            remember to say too late.
+          </p>
+        </div>
+
+        <p class="letter__sign reveal">
+          <span class="letter__sign-rule" aria-hidden="true"></span>
+          Baban
+        </p>
+      </div>
+
+      <p class="turn reveal">
+        <a class="turn__link" href="#photographs">
+          <span class="turn__eyebrow">Next</span>
+          <span class="turn__title">Twenty photographs</span>
+          <span class="turn__arrow" aria-hidden="true"></span>
+        </a>
+      </p>
+    </section>
+
+    <!-- ===================== II. PHOTOGRAPHS ===================== -->
+    <section class="chapter chapter--plates" id="photographs" data-label="Twenty photographs">
+      <header class="chapter__head reveal">
+        <p class="chapter__num" aria-hidden="true">II</p>
+        <h2 class="chapter__title">Twenty photographs</h2>
+        <p class="chapter__note reveal">Not the best ones. The ones that were there.</p>
+      </header>
+
+      <div class="plates" id="platesGrid">
+        <!-- Populated by js/main.js -->
+      </div>
+
+      <p class="turn reveal">
+        <a class="turn__link" href="#films">
+          <span class="turn__eyebrow">Next</span>
+          <span class="turn__title">Eight films</span>
+          <span class="turn__arrow" aria-hidden="true"></span>
+        </a>
+      </p>
+    </section>
+
+    <!-- ===================== III. FILMS ===================== -->
+    <section class="chapter chapter--films" id="films" data-label="Eight films">
+      <header class="chapter__head reveal">
+        <p class="chapter__num" aria-hidden="true">III</p>
+        <h2 class="chapter__title">Eight films</h2>
+        <p class="chapter__note reveal">For the days you forget how you sound when you laugh.</p>
+      </header>
+
+      <div class="films" id="filmsGrid">
+        <!-- Populated by js/main.js -->
+      </div>
+
+      <p class="turn reveal">
+        <a class="turn__link" href="#small-things">
+          <span class="turn__eyebrow">Next</span>
+          <span class="turn__title">The small things</span>
+          <span class="turn__arrow" aria-hidden="true"></span>
+        </a>
+      </p>
+    </section>
+
+    <!-- ===================== IV. SMALL THINGS ===================== -->
+    <section class="chapter chapter--small" id="small-things" data-label="The small things">
+      <header class="chapter__head reveal">
+        <p class="chapter__num" aria-hidden="true">IV</p>
+        <h2 class="chapter__title">The small things</h2>
+        <p class="chapter__note reveal">Four of them, out of more than four.</p>
+      </header>
+
+      <ol class="small-things">
+        <li class="small-thing reveal">
+          <span class="small-thing__num" aria-hidden="true">i</span>
+          <p class="small-thing__text">The half-second before you laugh, when your face has already decided.</p>
+        </li>
+        <li class="small-thing reveal">
+          <span class="small-thing__num" aria-hidden="true">ii</span>
+          <p class="small-thing__text">You keep believing out loud, even on the days I have stopped.</p>
+        </li>
+        <li class="small-thing reveal">
+          <span class="small-thing__num" aria-hidden="true">iii</span>
+          <p class="small-thing__text">You notice the things everyone else walks past, and then you do something about them.</p>
+        </li>
+        <li class="small-thing reveal">
+          <span class="small-thing__num" aria-hidden="true">iv</span>
+          <p class="small-thing__text">The face you make when you think no one is watching.</p>
+        </li>
+      </ol>
+
+      <p class="turn reveal">
+        <a class="turn__link" href="#chronology">
+          <span class="turn__eyebrow">Next</span>
+          <span class="turn__title">A short chronology</span>
+          <span class="turn__arrow" aria-hidden="true"></span>
+        </a>
+      </p>
+    </section>
+
+    <!-- ===================== V. CHRONOLOGY ===================== -->
+    <section class="chapter chapter--chronology" id="chronology" data-label="A short chronology">
+      <header class="chapter__head reveal">
+        <p class="chapter__num" aria-hidden="true">V</p>
+        <h2 class="chapter__title">A short chronology</h2>
+        <p class="chapter__note reveal">In the order I remember them, which is not the order they happened.</p>
+      </header>
+
+      <ol class="chronology">
+        <li class="chronology__row reveal">
+          <h3 class="chronology__label">Adhyapan</h3>
+          <p class="chronology__text">The first time I saw you. I spent the whole period trying to look like I wasn’t looking.</p>
+        </li>
+        <li class="chronology__row reveal">
+          <h3 class="chronology__label">Saraswati Pujo</h3>
+          <p class="chronology__text">A school evening, a bad joke, and an embarrassment I still replay on purpose.</p>
+        </li>
+        <li class="chronology__row reveal">
+          <h3 class="chronology__label">The first hug</h3>
+          <p class="chronology__text">Brief, awkward, and completely disarming.</p>
+        </li>
+        <li class="chronology__row reveal">
+          <h3 class="chronology__label">Your hand</h3>
+          <p class="chronology__text">You reached first. I have been steady ever since.</p>
+        </li>
+        <li class="chronology__row reveal">
+          <h3 class="chronology__label">The first date</h3>
+          <p class="chronology__text">We were meant to be somewhere. We ended up walking instead.</p>
+        </li>
+      </ol>
+
+      <p class="turn reveal">
+        <a class="turn__link" href="#closing">
+          <span class="turn__eyebrow">Next</span>
+          <span class="turn__title">Anyway,</span>
+          <span class="turn__arrow" aria-hidden="true"></span>
+        </a>
+      </p>
+    </section>
+
+    <!-- ===================== VI. CLOSING ===================== -->
+    <section class="chapter chapter--closing" id="closing" data-label="Anyway,">
+      <header class="chapter__head reveal">
+        <p class="chapter__num" aria-hidden="true">VI</p>
+        <h2 class="chapter__title">Anyway,</h2>
+      </header>
+
+      <div class="closing">
+        <p class="closing__text reveal">
+          Thank you — for the messages I read twice, for the patience I have not
+          always earned, and for being the kind of person who makes an ordinary
+          Tuesday feel accounted for.
+        </p>
+
+        <p class="closing__coda reveal">No occasion. No end date.</p>
+
+        <p class="closing__sign reveal">
+          <span class="letter__sign-rule" aria-hidden="true"></span>
+          Baban
+        </p>
+      </div>
+
+      <p class="turn reveal">
+        <a class="turn__link" href="#top">
+          <span class="turn__eyebrow">Back</span>
+          <span class="turn__title">To the beginning</span>
+          <span class="turn__arrow turn__arrow--up" aria-hidden="true"></span>
+        </a>
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ===================== COLOPHON ===================== -->
+  <footer class="colophon">
+    <div class="colophon__rule" aria-hidden="true"></div>
+    <div class="colophon__grid">
+      <p class="colophon__item">
+        <span class="colophon__key">Set in</span>
+        Fraunces, Newsreader<br>and IBM Plex Mono
+      </p>
+      <p class="colophon__item">
+        <span class="colophon__key">Photographs</span>
+        Twenty, kept as they were
+      </p>
+      <p class="colophon__item">
+        <span class="colophon__key">Built</span>
+        By hand, one page<br>No cookies, no tracking
+      </p>
+    </div>
+    <p class="colophon__end">&#10086;</p>
+  </footer>
+
+  <!-- ===================== PHOTO VIEWER ===================== -->
+  <dialog class="viewer" id="photoViewer" aria-label="Photograph">
+    <div class="viewer__inner">
+      <button class="viewer__close" type="button" data-close aria-label="Close photograph">
+        <span aria-hidden="true">&#10005;</span>
+      </button>
+      <p class="viewer__index" id="photoViewerIndex"></p>
+      <figure class="viewer__figure">
+        <img id="photoViewerImage" src="" alt="">
+      </figure>
+    </div>
+  </dialog>
+
+  <!-- ===================== FILM VIEWER ===================== -->
+  <dialog class="viewer viewer--film" id="filmViewer" aria-labelledby="filmViewerTitle">
+    <div class="viewer__inner">
+      <button class="viewer__close" type="button" data-close aria-label="Close film">
+        <span aria-hidden="true">&#10005;</span>
+      </button>
+      <p class="film-viewer__eyebrow" id="filmViewerIndex"></p>
+      <h2 class="film-viewer__title" id="filmViewerTitle"></h2>
+      <video class="film-viewer__video" id="filmViewerVideo" controls playsinline preload="none"></video>
+      <p class="film-viewer__note">Closes with the button above, or the Escape key.</p>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
