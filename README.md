@@ -3,6 +3,8 @@
 An editorial keepsake. A letter, twenty photographs, eight films and a handful of
 small things — laid out like a printed book, with no occasion attached.
 
+Live at **https://peter14l.github.io/birthday-ayantika/**
+
 Static HTML, CSS and vanilla JavaScript. No build step, no framework, no tracking.
 
 ## Preview locally
